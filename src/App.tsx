@@ -12,9 +12,9 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      {/* <WarningModal /> */}
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/:searchId" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchForm />} />

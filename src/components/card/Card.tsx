@@ -22,6 +22,7 @@ export interface CardProps {
 }
 
 function Cards() {
+  const store = useAppSelector((state) => state.post);
   const dispatch = useDispatch();
   const cardData = useAppSelector((state) => state.post);
   const [modalOpacity, setModalOpacity] = useState<number>(0);
@@ -35,7 +36,8 @@ function Cards() {
       .catch((res) => {
         console.log(res);
       });
-  }, []);
+    console.log(store.isLogoClicked);
+  }, [store.isLogoClicked]);
 
   return (
     <div className="cards">

@@ -15,7 +15,9 @@ function usePagination({ boardCountPerPage, pageRangeCount }) {
     }
     if (store.searchResult.result) {
       setPostCount(() => store.post.myValues.length);
-    } else foo();
+    } else {
+      foo();
+    }
   }, [store.searchResult.result]);
 
   const handleChange = (selectedPage) => {

@@ -10,6 +10,7 @@ export interface IPost {
   userName: string;
 }
 interface State {
+  isLogoClicked: boolean;
   pageNum: number;
   myValues: IPost[];
 }
@@ -17,6 +18,7 @@ interface State {
 const post = createSlice({
   name: 'post',
   initialState: {
+    isLogoClicked: false,
     pageNum: 1,
     myValues: [] as IPost[],
   },
@@ -28,6 +30,10 @@ const post = createSlice({
     updatePageNum: (state, action: PayloadAction<number>): State => ({
       ...state,
       pageNum: action.payload,
+    }),
+    updateIsLogoClicked: (state, action: PayloadAction<boolean>): State => ({
+      ...state,
+      isLogoClicked: action.payload,
     }),
   },
 });
