@@ -1,4 +1,4 @@
-import Searching from 'components/navbar/searching/Searching';
+import Searching from 'components/navbar/searching';
 
 function NavSearchBar() {
   return (

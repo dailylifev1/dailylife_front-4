@@ -15,7 +15,7 @@ function SearchForm() {
   };
 
   return (
-    <div id="wrap">
+    <div id="search-wrap">
       <form action="" onSubmit={submitHandler} autoComplete="on">
         <input
           className="searchBar"

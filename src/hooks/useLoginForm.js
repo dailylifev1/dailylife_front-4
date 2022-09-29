@@ -37,13 +37,6 @@ const useLoginForm = (initialValues) => {
       navigate('/');
     } else if (result.ok === false) {
       console.log(result.message);
-      // setLoading(false);
-      //   console.log(errStatus); // eslint-disable-line no-console
-      //   if (errStatus.response.status === 400) {
-      //     alert('아이디와 비밀번호를 입력해주세요 !');
-      //   } else if (errStatus.response.status === 500) {
-      //     alert('아이디 또는 비밀번호를 잘못 입력했습니다. \n입력하신 내용을 다시 확인해주세요.');
-      //   }
     }
   };
 

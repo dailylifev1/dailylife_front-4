@@ -9,15 +9,16 @@ function PagingProvider({
   handleChange,
 }) {
   return (
-    <Pagination
-      activePage={page}
-      itemsCountPerPage={boardCountPerPage}
-      totalItemsCount={postCount}
-      pageRangeDisplayed={pageRangeCount}
-      prevPageText={<img src="/assets/prevPage.png" alt="" />}
-      nextPageText={<img src="/assets/nextPage.png" alt="" />}
-      onChange={handleChange}
-    />
+    <div onClick={() => { window.scrollTo(0, 0) }}>
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={boardCountPerPage}
+        totalItemsCount={postCount}
+        pageRangeDisplayed={pageRangeCount}
+        prevPageText={<img src="/assets/prevPage.png" alt="" />}
+        nextPageText={<img src="/assets/nextPage.png" alt="" />}
+        onChange={handleChange}
+      /></div>
   );
 }
 

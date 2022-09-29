@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-
-import MainLogoIcon from 'components/Icons/MainLogoIcon';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { postActions } from 'reducers/post';
 import { updateSearchedKeyword } from 'reducers/searchResult';
@@ -15,7 +13,7 @@ function NavLogo() {
         dispatch(updateSearchedKeyword(''))
       }} type="button">
         <Link to="/">
-          <MainLogoIcon />
+          <img src='/assets/logo.png' alt='mainLogo' />
         </Link>
       </button>
     </div>
