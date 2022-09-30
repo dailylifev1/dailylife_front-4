@@ -4,13 +4,14 @@ import ModalContent from './ModalContent';
 import ModalImage from './ModalImage';
 
 function ModalBody(props) {
-  const { currentPostData, setModalOpacity } = props;
+  const { currentPostData, modalOpacity, setModalOpacity } = props;
   const { src } = currentPostData;
   return (
     <ModalBodyWrapper onClick={(e) => e.stopPropagation()}>
       <ModalImage image={src} />
       <ModalContent
         currentPostData={currentPostData}
+        modalOpacity={modalOpacity}
         setModalOpacity={setModalOpacity}
       />
     </ModalBodyWrapper>

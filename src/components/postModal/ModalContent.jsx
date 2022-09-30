@@ -4,7 +4,7 @@ import Comments from 'components/comments';
 import postData from 'mocks/postData';
 
 function ModalContent(props) {
-  const { currentPostData, setModalOpacity } = props;
+  const { currentPostData, modalOpacity, setModalOpacity } = props;
   const { title, content } = currentPostData;
   function contentGenerator(data) {
     if (data) return data;
@@ -20,7 +20,7 @@ function ModalContent(props) {
         <div className="text-in-modal">{contentGenerator(content)}</div>
         {/* <div className="text-in-modal">{currentPostData.content}</div> */}
       </div>
-      <Comments />
+      <Comments modalOpacity={modalOpacity} />
     </div>
   );
 }

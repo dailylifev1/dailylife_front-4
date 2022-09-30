@@ -75,9 +75,7 @@ const getCommentDate = (replyDate) => {
   ];
   const today = new Date();
   const formattedDate = new Date(
-    `${replyDate[0]}-${replyDate[1]}-${replyDate[2]} ${
-      (replyDate[3] + 9) % 24
-    }:${replyDate[4]}:${replyDate[5]}`,
+    `${replyDate[0]}-${replyDate[1]}-${replyDate[2]} ${replyDate[3]}:${replyDate[4]}:${replyDate[5]}`,
   );
   const elapsedTime = Math.trunc(
     (today.getTime() - formattedDate.getTime()) / 1000,
@@ -93,7 +91,6 @@ const getCommentDate = (replyDate) => {
   else if (elapsedTime < week)
     elapsedText = `${Math.trunc(elapsedTime / day)}일`;
   else elapsedText = `${Math.trunc(elapsedTime / week)}주`;
-
   return elapsedText;
 };
 

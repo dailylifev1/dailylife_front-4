@@ -1,30 +1,21 @@
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import DeleteCommentPopup from 'components/buttons/DeleteCommentbutton';
 import ReplyOptionButton from 'components/buttons/ReplyOptionButton';
 import useCommentHearts from 'hooks/useCommentHearts';
 
-
 function CommentDate(props) {
-  // const { replyList } = useSelector(state => state.comment);
-  const { item, replyHover, } = props;
-  const [replyDeleteFlag, setReplyDeleteFlag] =
-    useState(false);
-
-  const { commentHearts } = useCommentHearts(
-    item.replyNum,
-  );
+  const { item, replyHover } = props;
+  const [replyDeleteFlag, setReplyDeleteFlag] = useState(false);
+  const { commentHearts } = useCommentHearts(item.replyNum);
 
   return (
     <CommentDateContainer>
       <span className="empty" />
       <span className="comment-date">
         {`${item.replyTime} ·  `}
-        {commentHearts === 0
-          ? ''
-          : `좋아요: ${item.commentHearts}`}
+        {commentHearts === 0 ? '' : `좋아요: ${item.commentHearts}`}
         {' · '}
         답글 달기
         {item.subCommentCount ? (
@@ -45,9 +36,7 @@ function CommentDate(props) {
         {replyDeleteFlag === true ? (
           <DeleteCommentPopup
             replyDeleteFlag={item.replyNum}
-            setReplyDeleteFlag={
-              setReplyDeleteFlag
-            }
+            setReplyDeleteFlag={setReplyDeleteFlag}
           />
         ) : (
           ''

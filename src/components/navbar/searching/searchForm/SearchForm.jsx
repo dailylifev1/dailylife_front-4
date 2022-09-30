@@ -31,7 +31,7 @@ function SearchForm() {
                   {},
                 )
                 .then((res) => {
-                  navigate(`search=${e.target.value}`)
+                  navigate(`search=${e.target.value}`);
                   dispatch(postActions.updateItems(res.data));
                   dispatch(updateSearchedKeyword(e.target.value));
                 })

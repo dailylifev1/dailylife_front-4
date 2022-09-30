@@ -23,6 +23,7 @@ function PostModal(props) {
         <ModalBody
           currentPostData={currentPostData}
           setModalOpacity={setModalOpacity}
+          modalOpacity={modalOpacity}
         />
       </ModalWindow>
     </div>

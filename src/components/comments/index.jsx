@@ -7,14 +7,13 @@ import CommentSection from './CommentSection';
 import ModalSocial from 'components/postModal/ModalSocial';
 import useComments from 'hooks/useComments';
 
-
-function Comments() {
+function Comments({ modalOpacity }) {
   const currentPostData = useSelector((state) => state.selectedPostData);
   const { dateHandler, fetchComments } = useComments();
 
   useEffect(() => {
-    fetchComments(currentPostData.boardNum);
-  }, [currentPostData.boardNum]);
+    if (modalOpacity) fetchComments(currentPostData.boardNum);
+  }, [modalOpacity]);
 
   return (
     <div className="comments-wrapper">
@@ -22,9 +21,7 @@ function Comments() {
       <ModalSocial />
       <hr />
       {/* 댓글 창 시작 */}
-      <CommentSection
-        currentPostData={currentPostData}
-      />
+      <CommentSection currentPostData={currentPostData} />
       {/* 댓글 작성칸 */}
       <CommentCreate
         dateHandler={dateHandler}
