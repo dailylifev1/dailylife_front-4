@@ -32,6 +32,7 @@ function CardItem({
 
   const Fullheart = '/assets/fullHeart.png';
   const Emptyheart = '/assets/heart.png';
+
   useEffect(() => {
     async function fetchItemData() {
       const items = await axios
@@ -55,17 +56,17 @@ function CardItem({
           },
         },
       )
-      .then((res) => { })
+      .then((res) => {})
       .catch((res) => console.log(res));
   };
 
   return (
     <CardWrapper onClick={handleClick}>
       <ImgWrapper>
-        <Thumbnail alt="img" src={src} onerror="/assets/avatarImg.png" />
-        <UnderInfo>{content}</UnderInfo>
-        <Text>{title}</Text>
-        <GradientBar />
+        {src.length ? <Thumbnail alt="img" src={src} /> : ''}
+        <UnderInfo img={src}>{content}</UnderInfo>
+        <Text img={src}>{title}</Text>
+        <GradientBar img={src} />
       </ImgWrapper>
       <CardInfo>
         <LikeButton
@@ -109,7 +110,7 @@ const Thumbnail = styled.img`
   transition: all 0.2s linear;
 `;
 const ImgWrapper = styled.figure`
-position: relative;
+  position: relative;
   margin: 0 auto 0 auto;
   width: auto;
   height: 100%;
@@ -118,6 +119,21 @@ position: relative;
   border-radius: 10px;
   cursor: pointer;
 `;
+const GradientBar = styled.div<{ img: string }>`
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  opacity: 0.6;
+  background: ${(props) =>
+    props.img.length
+      ? `linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 91.15%
+  )`
+      : ''};
+`;
 const CardInfo = styled.div`
   font-family: 'pretendard';
   color: #ffffff;
@@ -125,24 +141,11 @@ const CardInfo = styled.div`
   width: 100%;
 `;
 
-const GradientBar = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  bottom: 0;
-  opacity: 0.6;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.7) 91.15%
-  );
-`;
-
-const Text = styled.h5`
+const Text = styled.h5<{ img: string }>`
   position: absolute;
   margin-left: 0.7vw;
   z-index: 4;
-  color: #ffffff;
+  color: ${(props) => (props.img.length ? 'white' : 'black')};
   line-height: 30px;
   display: block;
   text-overflow: ellipsis;
@@ -154,14 +157,14 @@ const Text = styled.h5`
   font-weight: 500;
   width: 80%;
 `;
-const UnderInfo = styled.p`
+const UnderInfo = styled.p<{ img: string }>`
   position: absolute;
   margin-left: 0.7vw;
-z-index: 4;   
-  color: #ffffff;
+  z-index: 5;
+  color: ${(props) => (props.img.length ? 'white' : 'black')};
   width: 80%;
   font-size: 0.9vw;
-  font-weight: 250;
+  font-weight: 300;
   cursor: pointer;
   font-family: 'pretendard';
   line-height: 30px;
@@ -172,10 +175,10 @@ z-index: 4;
   bottom: 0.5vw;
 `;
 const LikeButton = styled.img`
-position: absolute;
+  position: absolute;
   width: 1.4vw;
   height: 1.4vw;
   bottom: 2.8vw;
   right: 0.75vw;
-  `;
+`;
 export default CardItem;

@@ -39,4 +39,5 @@ const post = createSlice({
 });
 
 export const postActions = post.actions;
+
 export default post;

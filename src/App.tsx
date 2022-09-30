@@ -11,6 +11,10 @@ import SignUp from 'pages/SignUp';
 function App() {
   return (
     <BrowserRouter>
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
