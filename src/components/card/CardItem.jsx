@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { selectedPostActions } from '../../reducers/selectedPostData';
 
 function CardItem({
@@ -35,9 +35,7 @@ function CardItem({
   useEffect(() => {
     async function fetchItemData() {
       const items = await axios
-        .get(
-          `${process.env.REACT_APP_HOST}/api/board/getBoardNotLogin`,
-        )
+        .get(`${process.env.REACT_APP_HOST}/api/board/getBoardNotLogin`)
         .then((res) => res.data);
     }
     fetchItemData();
@@ -53,29 +51,28 @@ function CardItem({
         },
         {
           headers: {
-            'X-ACCESS-TOKEN': localStorage.getItem('accessToken')!,
+            // 'X-ACCESS-TOKEN': localStorage.getItem('accessToken')!,
           },
         },
       )
-      .then((res) => {
-      })
+      .then((res) => { })
       .catch((res) => console.log(res));
   };
 
   return (
     <CardWrapper onClick={handleClick}>
       <ImgWrapper>
-        <Thumbnail alt="img" src={src} />
+        <Thumbnail alt="img" src={src} onerror="/assets/avatarImg.png" />
+        <UnderInfo>{content}</UnderInfo>
+        <Text>{title}</Text>
         <GradientBar />
       </ImgWrapper>
       <CardInfo>
-        <Text>{title}</Text>
         <LikeButton
           onClick={clickHeartEvent}
           src={like ? Fullheart : Emptyheart}
           alt="like"
         />
-        <UnderInfo>{content}</UnderInfo>
       </CardInfo>
     </CardWrapper>
   );
@@ -112,6 +109,7 @@ const Thumbnail = styled.img`
   transition: all 0.2s linear;
 `;
 const ImgWrapper = styled.figure`
+position: relative;
   margin: 0 auto 0 auto;
   width: auto;
   height: 100%;
@@ -142,42 +140,42 @@ const GradientBar = styled.div`
 
 const Text = styled.h5`
   position: absolute;
-  width: 75%;
+  margin-left: 0.7vw;
+  z-index: 4;
   color: #ffffff;
-  font-size: 1.1vw;
-  margin: 3vw 0 1.5vw 1vw;
   line-height: 30px;
   display: block;
   text-overflow: ellipsis;
   word-break: break-all;
   white-space: nowrap;
   overflow: hidden;
-  bottom: 1vw;
-  color: #252e48;
-  font-size: 6vw;
-  margin: 7.5vw 0 5vw 0;
-  line-height: 0px;
-`;
-const LikeButton = styled.img`
-  position: absolute;
-  width: 1.4vw;
-  height: 1.4vw;
-  bottom: 2.8vw;
-  right: 0.75vw;
+  bottom: 2vw;
+  font-size: 1vw;
+  font-weight: 500;
+  width: 80%;
 `;
 const UnderInfo = styled.p`
   position: absolute;
+  margin-left: 0.7vw;
+z-index: 4;   
   color: #ffffff;
   width: 80%;
   font-size: 0.9vw;
+  font-weight: 250;
   cursor: pointer;
   font-family: 'pretendard';
-  margin: 0vw 0vw 0vw 1vw;
   line-height: 30px;
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  bottom: 0.7vw;
+  bottom: 0.5vw;
 `;
+const LikeButton = styled.img`
+position: absolute;
+  width: 1.4vw;
+  height: 1.4vw;
+  bottom: 2.8vw;
+  right: 0.75vw;
+  `;
 export default CardItem;
