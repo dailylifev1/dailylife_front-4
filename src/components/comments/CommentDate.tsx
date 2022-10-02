@@ -4,8 +4,14 @@ import styled from 'styled-components';
 import DeleteCommentPopup from 'components/buttons/DeleteCommentbutton';
 import ReplyOptionButton from 'components/buttons/ReplyOptionButton';
 import useCommentHearts from 'hooks/useCommentHearts';
+import { type Icomment } from 'reducers/comment';
 
-function CommentDate(props) {
+interface Props {
+  item: Icomment;
+  replyHover: number;
+}
+
+function CommentDate(props: Props) {
   const { item, replyHover } = props;
   const [replyDeleteFlag, setReplyDeleteFlag] = useState<boolean>(false);
   const { commentHearts } = useCommentHearts(item.replyNum);
@@ -15,16 +21,16 @@ function CommentDate(props) {
       <span className="empty" />
       <span className="comment-date">
         {`${item.replyTime} ·  `}
-        {commentHearts === 0 ? '' : `좋아요: ${item.commentHearts}`}
+        {commentHearts === 0 ? '' : `좋아요: 0`}
         {' · '}
         답글 달기
-        {item.subCommentCount ? (
+        {/* {item.subCommentCount ? (
           <span className="comment-expand">
             {` · 답글 보기 ${item.subCommentCount}개 `}
           </span>
         ) : (
           ''
-        )}
+        )} */}
         {replyHover === item.replyNum ? (
           <ReplyOptionButton
             setReplyDeleteFlag={setReplyDeleteFlag}
@@ -32,7 +38,7 @@ function CommentDate(props) {
         ) : (
           ''
         )}
-        {replyDeleteFlag === true ? (
+        {replyDeleteFlag ? (
           <DeleteCommentPopup
             replyDeleteFlag={item.replyNum}
             setReplyDeleteFlag={setReplyDeleteFlag}

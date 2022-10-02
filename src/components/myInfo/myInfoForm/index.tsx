@@ -33,10 +33,14 @@ function MyInfoForm() {
   ]);
 
   const handlePage = () => {
-    if (location.pathname === '/profileModify')
-      return <ProfileModifyForm textArr={textArr} />;
-    if (location.pathname === '/findAccount')
-      return <AccountModifyForm textArr={textArr} />;
+    switch (location.pathname) {
+      case '/profileModify':
+        return <ProfileModifyForm textArr={textArr} />;
+      case '/findAccount':
+        return <AccountModifyForm textArr={textArr} />;
+      default:
+        return null;
+    }
   };
   return (
     <div className="form-container">

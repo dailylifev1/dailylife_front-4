@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ISelectedPostData {
+export interface ISelectedPostData {
   boardNum: number;
   src: string;
   title: string;

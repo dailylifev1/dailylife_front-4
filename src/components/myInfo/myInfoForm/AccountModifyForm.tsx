@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import './accountManage.scss';
 import MyInfoInput from './MyInfoInput';
 import MyInfoTitle from './MyInfoTitle';
-import MyInfoButton from 'components/buttons/SubmitButton';
+
 import { validate } from 'common/utils';
-import { useLocation } from 'react-router-dom';
+import MyInfoButton from 'components/buttons/SubmitButton';
 
 function AccountModifyForm({ textArr }) {
   const location = useLocation();
@@ -13,16 +15,12 @@ function AccountModifyForm({ textArr }) {
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
 
   function activator() {
-    const firstErrorMsg = validate(inputCurrentPassword, 'password')[
-      'password'
-    ];
-    const secondErrorMsg = validate(inputNewPassword, 'password')['password'];
-    const thirdErrorMsg = validate(inputConfirmPassword, 'password')[
-      'password'
-    ];
+    const firstErrorMsg = validate(inputCurrentPassword, 'password').password !== undefined;
+    const secondErrorMsg = validate(inputNewPassword, 'password').password !== undefined;
+    const thirdErrorMsg = validate(inputConfirmPassword, 'password').password !== undefined;
 
     if (firstErrorMsg || secondErrorMsg || thirdErrorMsg) return false;
-    else return true;
+    return true;
   }
 
   return (
@@ -35,27 +33,24 @@ function AccountModifyForm({ textArr }) {
         <div className="row">
           <p className="account-modify-input">현재 비밀번호</p>
           <MyInfoInput
-            type={'password'}
-            state={inputCurrentPassword}
-            formType={'password'}
+            type='password'
+            formType='password'
             setState={setInputCurrentPassword}
           />
         </div>
         <div className="row">
           <p className="account-modify-input">새 비밀번호</p>
           <MyInfoInput
-            type={'password'}
-            state={inputNewPassword}
-            formType={'password'}
+            type='password'
+            formType='password'
             setState={setInputNewPassword}
           />
         </div>
         <div className="row">
           <p className="account-modify-input">새 비밀번호 확인</p>
           <MyInfoInput
-            type={'password'}
-            state={inputConfirmPassword}
-            formType={'password'}
+            type='password'
+            formType='password'
             setState={setInputConfirmPassword}
           />
         </div>
@@ -63,9 +58,9 @@ function AccountModifyForm({ textArr }) {
           <MyInfoButton
             width="85px"
             height="28px"
-            text={'비밀번호 변경'}
+            text='비밀번호 변경'
             isActive={activator()}
-            requestPath={'api/users/modifyUser'}
+            fontSize='15px'
           />
         </div>
       </div>

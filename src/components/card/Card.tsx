@@ -18,7 +18,7 @@ function Cards() {
               <CardItem
                 key={data.boardNum}
                 boardNum={data.boardNum}
-                src={data.serverFileUrl}
+                src={data.serverFileUrl[0]}
                 title={data.title}
                 content={data.content}
                 heartState={data.heart}

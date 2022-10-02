@@ -1,6 +1,7 @@
-import { validate } from 'common/utils';
 import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
+
+import { validate } from 'common/utils';
 
 interface Props {
   type?: string;
@@ -11,7 +12,6 @@ interface Props {
   description?: string;
 }
 interface ValidateProps extends Props {
-  state: string;
   formType: string;
 }
 interface StateProps extends ValidateProps {
@@ -25,12 +25,11 @@ interface ResultType {
 export default function MyInfoInput({
   type = 'text',
   width = '100%',
-  height = '100%',
+  height = 'auto',
   backgroundColor = '#f4f4f477',
   placeholder = '',
   description = '',
   setState,
-  state,
   formType,
 }: StateProps) {
   const [result, setResult] = useState<ResultType>({
@@ -40,7 +39,7 @@ export default function MyInfoInput({
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setState(e.target.value);
     const validationResult = validate(e.target.value, formType);
-    if (validationResult)
+    if (validationResult[formType] !== '')
       setResult({ isValid: false, error: validationResult[formType] });
     else setResult({ isValid: true, error: '' });
   }
@@ -49,9 +48,10 @@ export default function MyInfoInput({
       <StyledInput
         type={type}
         width={width}
+        height={height}
         backgroundColor={backgroundColor}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
       />
       <Description isValid={result.isValid}>
         {result.isValid ? description : result.error}

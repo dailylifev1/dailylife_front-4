@@ -18,7 +18,9 @@ function useCards() {
       const { data: cardsData } = await postApi.getItemsWhenLoggedIn();
       dispatch(postActions.updateItems(cardsData));
     }
-    fetchCards();
+    fetchCards()
+      .then((res) => res)
+      .catch((err) => err);
   }, [cardData.isLogoClicked]);
   return {
     cardData,

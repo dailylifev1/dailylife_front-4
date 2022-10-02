@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { TextObj } from 'components/myInfo/myInfoForm';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { type TextObj } from 'components/myInfo/myInfoForm';
 
 interface Props extends TextObj {
   setTextArr: Function;
@@ -12,16 +13,16 @@ function ProfileMenuItem({ id, data, isActive, path, setTextArr }: Props) {
     if (isActive === undefined) {
       setTextArr((prevState: []) =>
         prevState.map((item: TextObj) => {
-          if (item.isActive) return { ...item, isActive: undefined };
-          else if (item.id === id) return { ...item, isActive: true };
-          else return { ...item, isActive: undefined };
+          if (item.isActive === true) return { ...item, isActive: undefined };
+          if (item.id === id) return { ...item, isActive: true };
+          return { ...item, isActive: undefined };
         }),
       );
     }
     navigate(path);
   }
   return (
-    <StyledButton isActive={isActive} onClick={handleClick}>
+    <StyledButton isActive={isActive} onClick={() => handleClick()}>
       {data}
     </StyledButton>
   );
@@ -34,8 +35,8 @@ const StyledButton = styled.button<{ isActive: boolean | undefined }>`
   padding: 0;
   font-family: Pretendard;
   font-size: 15px;
-  font-weight: ${(props) => (props.isActive ? 600 : 400)};
+  font-weight: ${(props) => (props.isActive === true ? 600 : 400)};
   line-height: 18px;
   color: #3e3e3e;
-  border-bottom: ${(props) => (props.isActive ? '2px solid black' : 'none')};
+  border-bottom: ${(props) => (props.isActive === true ? '2px solid black' : 'none')};
 `;

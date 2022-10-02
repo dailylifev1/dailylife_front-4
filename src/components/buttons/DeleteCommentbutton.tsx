@@ -1,30 +1,33 @@
 import axios from 'axios';
-import { useAppSelector, useAppDispatch } from 'store/hooks';
 
+import { getAccessToken } from 'common/utils';
 import { updateReplyList } from 'reducers/comment';
+import { useAppSelector, useAppDispatch } from 'store/hooks';
 
 function DeleteCommentPopup(props) {
   const dispatch = useAppDispatch();
-  // const { replyList } = useSelector((state) => state.comment);
   const { replyList } = useAppSelector((state) => state.comment);
   const { setReplyDeleteFlag, replyDeleteFlag } = props;
+
   const handleDeleteComment = (replyNum: number) => {
-    axios
-      .delete(`${process.env.REACT_APP_HOST}/api/reply/delete/${replyNum}`, {
-        headers: {
-          'X-ACCESS-TOKEN': localStorage.getItem('accessToken')!,
-        },
-      })
-      .then(() => {
-        const idx = replyList.findIndex(
-          (item: { replyNum: number }) => item.replyNum === replyNum,
-        );
-        const newReplyList = [...replyList];
-        newReplyList.splice(idx, 1);
-        dispatch(updateReplyList(newReplyList));
-        setReplyDeleteFlag(-1);
-      })
-      .catch((err) => console.log(err));
+    if (process.env.REACT_APP_HOST !== undefined) {
+      axios
+        .delete(`${process.env.REACT_APP_HOST}/api/reply/delete/${replyNum}`, {
+          headers: {
+            'X-ACCESS-TOKEN': getAccessToken(),
+          },
+        })
+        .then(() => {
+          const idx = replyList.findIndex(
+            (item: { replyNum: number }) => item.replyNum === replyNum,
+          );
+          const newReplyList = [...replyList];
+          newReplyList.splice(idx, 1);
+          dispatch(updateReplyList(newReplyList));
+          setReplyDeleteFlag(-1);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (

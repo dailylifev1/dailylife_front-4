@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import { TextObj } from "components/myInfo/myInfoForm";
 
 interface Props {
@@ -9,12 +10,11 @@ interface Props {
 export default function MyInfoTitle({ path, textArr }: Props) {
   return <div className='myinfo-title-container'>
     {
-      textArr.filter((item) => item.path === path).map((item) => {
-        return <div key={item.id} className="myinfo-title-wrapper">
+      textArr.filter((item) => item.path === path).map((item) =>
+        <div key={item.id} className="myinfo-title-wrapper">
           <MainTitle>{item.data}</MainTitle>
           <SubTitle>{item.description}</SubTitle>
         </div>
-      }
       )
     }
   </div>

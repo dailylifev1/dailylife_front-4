@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
+AvatarIcon.defaultProps = {
+  width: 38,
+  height: 38,
+}
+
 interface AvatarProps {
-  width: number | undefined;
-  height: number | undefined;
-  image?: string | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  image: string;
 }
 
 function AvatarIcon({ width = 38, height = 38, image }: AvatarProps) {
@@ -17,7 +22,7 @@ const Avatar = styled.div<AvatarProps>`
   height: ${(props) => props.height}px;
   aspect-ratio: 1;
   background-image: ${(props) =>
-    props.image ? `url(${props.image})` : `url('/assets/avatarImg.png')`};
+    props.image !== '' ? `url(${props.image})` : `url('/assets/avatarImg.png')`};
   background-position: center;
   background-size: cover;
 `;

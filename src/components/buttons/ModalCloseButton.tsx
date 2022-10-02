@@ -1,9 +1,10 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
+import { type OpacityType } from 'components/card/useCards';
 import PostModalCloseButtonIcon from 'components/Icons/PostModalCloseButtonIcon';
 import { updateModalStatus } from 'reducers/kebab.postModal';
-import { useDispatch } from 'react-redux';
-import { type OpacityType } from 'components/card/useCards';
 
 interface Props {
   setModalOpacity: React.Dispatch<React.SetStateAction<OpacityType>>

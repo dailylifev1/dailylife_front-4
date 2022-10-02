@@ -3,12 +3,13 @@ import './index.scss';
 import { Provider } from 'react-redux/es/exports';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from 'styled-components';
 
 import App from './App';
+
+import { store } from 'store/store';
 import GlobalStyle from 'styles/GlobalStyle';
 import theme from 'styles/theme';
-import { ThemeProvider } from 'styled-components';
-import { store } from 'store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const persistor = persistStore(store);

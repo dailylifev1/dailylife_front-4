@@ -1,11 +1,14 @@
-import { validate } from 'common/utils';
 import { ChangeEvent, useState } from 'react';
 import styled, { css } from 'styled-components/macro';
-import { PayloadType } from '.';
+
+import { type PayloadType } from './index';
+
+import { validate } from 'common/utils';
+
 
 interface SizeType<T> {
-  width?: T;
-  height?: T;
+  width: T;
+  height: T;
 }
 interface Props extends SizeType<string> {
   type: string;
@@ -46,7 +49,7 @@ function SignUpInput({
       ...prevState,
       [reqId]: e.target.value,
     }));
-    if (validateResult[formType])
+    if (validateResult[formType] !== undefined)
       setResult({ isValid: false, error: validateResult[formType] });
     else setResult({ isValid: true, error: '' });
     if (e.target.value.length === 0)
@@ -60,7 +63,7 @@ function SignUpInput({
           type={type}
           width={width}
           height={height}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           maxLength={limit}
           placeholder={placeholder}
         />

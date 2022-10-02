@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface IUserNum {
+  userNum: number;
+}
+
 const myInfo = createSlice({
   name: 'myInfo',
   initialState: {
@@ -7,10 +11,10 @@ const myInfo = createSlice({
   },
 
   reducers: {
-    updateUserNum: (state, action: PayloadAction<number>): void => {
-      // userNum: action.payload,
-      state.userNum = action.payload;
-    },
+    updateUserNum: (state, action: PayloadAction<number>): IUserNum => ({
+      ...state,
+      userNum: action.payload,
+    }),
   },
 });
 

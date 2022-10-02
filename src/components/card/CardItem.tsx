@@ -1,6 +1,17 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import useCardItem from './useCardItem';
+import { type OpacityType } from './useCards';
+
+interface Props {
+  boardNum: number;
+  src: string;
+  title: string;
+  content: string;
+  heartState: boolean;
+  setModalOpacity: React.Dispatch<React.SetStateAction<OpacityType>>;
+}
 
 function CardItem({
   boardNum,
@@ -9,7 +20,7 @@ function CardItem({
   content,
   heartState,
   setModalOpacity,
-}) {
+}: Props) {
   const { handleClick, clickHeartEvent, like } = useCardItem({
     heartState,
     setModalOpacity,
@@ -25,7 +36,7 @@ function CardItem({
   return (
     <CardWrapper onClick={handleClick}>
       <ImgWrapper>
-        {src.length ? <Thumbnail alt="img" src={src} /> : ''}
+        {src !== '' ? <Thumbnail alt="img" src={src} /> : ''}
         <UnderInfo img={src}>{content}</UnderInfo>
         <Text img={src}>{title}</Text>
         <GradientBar img={src} />
@@ -88,8 +99,7 @@ const GradientBar = styled.div<{ img: string }>`
   bottom: 0;
   opacity: 0.6;
   background: ${(props) =>
-    props.img.length
-      ? `linear-gradient(
+    props.img !== '' ? `linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.7) 91.15%
@@ -107,7 +117,7 @@ const Text = styled.h5<{ img: string }>`
   position: absolute;
   margin-left: 0.7vw;
   z-index: 4;
-  color: ${(props) => (props.img.length ? 'white' : 'black')};
+  color: ${(props) => (props.img !== '' ? 'white' : 'black')};
   line-height: 30px;
   display: block;
   text-overflow: ellipsis;
@@ -123,7 +133,7 @@ const UnderInfo = styled.p<{ img: string }>`
   position: absolute;
   margin-left: 0.7vw;
   z-index: 5;
-  color: ${(props) => (props.img.length ? 'white' : 'black')};
+  color: ${(props) => (props.img !== '' ? 'white' : 'black')};
   width: 80%;
   font-size: 0.9vw;
   font-weight: 300;

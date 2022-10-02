@@ -28,14 +28,14 @@ function SignUp() {
 
   const [inputValues, setInputValues] = useState(signUpData);
   const activator = () => {
-    const firstErrorMsg = validate(inputValues.username, 'username').username;
-    const secondErrorMsg = validate(inputValues.email, 'email').email;
-    const thirdErrorMsg = validate(inputValues.userId, 'userId').userId;
-    const fourthErrorMsg = validate(inputValues.password, 'password').password;
+    const firstErrorMsg = validate(inputValues.username, 'username').username !== undefined;
+    const secondErrorMsg = validate(inputValues.email, 'email').email !== undefined;
+    const thirdErrorMsg = validate(inputValues.userId, 'userId').userId !== undefined;
+    const fourthErrorMsg = validate(inputValues.password, 'password').password !== undefined;
     const fifthErrorMsg = validate(
       inputValues.passwordConfirm,
       'password',
-    ).password;
+    ).password !== undefined;
 
     if (
       firstErrorMsg ||
@@ -101,7 +101,7 @@ function SignUp() {
 
   return (
     <SignUpWrapper>
-      <form action="/signin" method="POST" onSubmit={() => handleSubmit()}>
+      <form action="/signin" method="POST" onSubmit={(e) => handleSubmit(e)}>
         <div className="register-form-wrapper">
           <p className="register-info-title">계정 생성</p>
           <div className="register-avatar-wrapper">
@@ -117,7 +117,7 @@ function SignUp() {
               onChange={(e) => {
                 if (e.target.files !== null) {
                   setFileImage(URL.createObjectURL(e.target.files[0]));
-                  for (let i = 0; i < e.target.files.length; i++)
+                  for (let i = 0; i < e.target.files.length; i += 1)
                     setFile(`${file} ${e.target.files[i].name}`);
                   setImageName([...imageName]);
                 }
@@ -135,6 +135,8 @@ function SignUp() {
                   reqId={item.reqId}
                   limit={item.limit}
                   placeholder={item.placeholder}
+                  width='100%'
+                  height='auto'
                 />
               </div>
             ))}
@@ -143,6 +145,7 @@ function SignUp() {
               height="50px"
               fontSize="17px"
               isActive={activator()}
+              width='100px'
             />
           </div>
           {/* <button type="submit" className="register-form-submit-btn">
