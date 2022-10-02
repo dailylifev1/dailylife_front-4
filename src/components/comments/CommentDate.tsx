@@ -7,7 +7,7 @@ import useCommentHearts from 'hooks/useCommentHearts';
 
 function CommentDate(props) {
   const { item, replyHover } = props;
-  const [replyDeleteFlag, setReplyDeleteFlag] = useState(false);
+  const [replyDeleteFlag, setReplyDeleteFlag] = useState<boolean>(false);
   const { commentHearts } = useCommentHearts(item.replyNum);
 
   return (
@@ -28,7 +28,6 @@ function CommentDate(props) {
         {replyHover === item.replyNum ? (
           <ReplyOptionButton
             setReplyDeleteFlag={setReplyDeleteFlag}
-            replyNum={item.replyNum}
           />
         ) : (
           ''

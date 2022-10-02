@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
+interface Props {
+  setReplyDeleteFlag: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 function ReplyOptionButton({
   setReplyDeleteFlag,
-}) {
+}: Props) {
   return (
     <ReplyOption
       onClick={() => {
-        setReplyDeleteFlag((prevState) => !prevState)
+        setReplyDeleteFlag((prevState: boolean) => !prevState)
       }}
     >
       <svg

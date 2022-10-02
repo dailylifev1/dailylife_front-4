@@ -1,19 +1,13 @@
-import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
-function LogInButton(props) {
+interface Props {
+  text: string;
+}
+
+function LogInButton(props: Props) {
   const { text } = props;
   return <StyledButton>{text}</StyledButton>;
 }
-
-LogInButton.defaultProps = {
-  text: '',
-};
-
-LogInButton.propTypes = {
-  text: PropTypes.string,
-};
-
 export default LogInButton;
 
 const StyledButton = styled.button`
