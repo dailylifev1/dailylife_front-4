@@ -14,8 +14,12 @@ const postApi = {
         heartState: postData.heartState,
       },
     };
-    const response = await client.get(`/${PATH}/getBoardNotLogin`, option);
+    const response = await client.get(`/${PATH}/getboard`, option);
     console.log(response);
+  }),
+  getItemsWhenLoggedIn: methodFormat(async () => {
+    const response = await client.get(`/${PATH}/getBoardNotLogin`);
+    return response.data;
   }),
 
   /** 로그인 되어있지 않을 때 게시글 정보 받아오는 API */
