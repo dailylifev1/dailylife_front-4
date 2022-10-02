@@ -1,14 +1,13 @@
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { postActions } from '../../reducers/post';
 
 import postApi from 'apis/postApi';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 function useCards() {
-  const dispatch = useDispatch();
-  const cardData = useSelector((state) => state.post); // 스토어의 상태값을 반환해준다.
+  const dispatch = useAppDispatch();
+  const cardData = useAppSelector((state) => state.post); // 스토어의 상태값을 반환해준다.
   const [modalOpacity, setModalOpacity] = useState(0);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ function useCards() {
       dispatch(postActions.updateItems(cardsData));
     }
     fetchCards();
-  }, [modalOpacity]);
+  }, [cardData.isLogoClicked]);
   return {
     cardData,
     modalOpacity,

@@ -31,20 +31,20 @@ function useCardItem({
     );
   };
 
-  useEffect(() => {
-    async function fetchItemData() {
-      const items = await axios
-        .get(`${process.env.REACT_APP_HOST}/api/board/getBoard`, {
-          headers: {
-            'X-ACCESS-TOKEN': localStorage.getItem('accessToken'),
-          },
-        })
-        .then((res) => res.data);
+  // useEffect(() => {
+  //   async function fetchItemData() {
+  //     const items = await axios
+  //       .get(`${process.env.REACT_APP_HOST}/api/board/getBoard`, {
+  //         headers: {
+  //           'X-ACCESS-TOKEN': localStorage.getItem('accessToken'),
+  //         },
+  //       })
+  //       .then((res) => res.data);
 
-      dispatch(postActions.updateItems(items));
-    }
-    fetchItemData();
-  }, [like]);
+  //     dispatch(postActions.updateItems(items));
+  //   }
+  //   fetchItemData();
+  // }, [like]);
 
   const clickHeartEvent = (e) => {
     e.stopPropagation();

@@ -33,8 +33,7 @@ function WritePage(props) {
         },
       })
       .then((res) => {
-        console.log(res)
-        window.location.replace("/");
+        window.location.replace('/');
       })
       .catch((err) => console.log(err));
     closeModal();
@@ -114,14 +113,7 @@ function WritePage(props) {
                   placeholder="내용을 입력해주세요"
                   onChange={(e) => setContent(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  className="submit-btn"
-                // onClick={closeModal}
-                //   onClick={() => {
-                //     if (fileImage === '' ? (alert('이미지를 등록해주세요!')))
-                // }}
-                >
+                <button type="submit" className="submit-btn">
                   게시물 등록
                 </button>
               </div>
