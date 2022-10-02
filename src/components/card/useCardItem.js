@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
-import { postActions } from '../../reducers/post';
 
 import { selectedPostActions } from 'reducers/selectedPostData';
 

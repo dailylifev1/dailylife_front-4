@@ -10,16 +10,14 @@ function CardItem({
   heartState,
   setModalOpacity,
 }) {
-  const { handleClick, clickHeartEvent, like } = useCardItem(
-    {
-      heartState,
-      setModalOpacity,
-      boardNum,
-      src,
-      title,
-      content,
-    }
-  );
+  const { handleClick, clickHeartEvent, like } = useCardItem({
+    heartState,
+    setModalOpacity,
+    boardNum,
+    src,
+    title,
+    content,
+  });
 
   const Fullheart = '/assets/fullHeart.png';
   const Emptyheart = '/assets/heart.png';
@@ -42,7 +40,6 @@ function CardItem({
     </CardWrapper>
   );
 }
-
 const CardWrapper = styled.li`
   position: relative;
   border-radius: 10px;
@@ -61,6 +58,7 @@ const CardWrapper = styled.li`
     height: 100%;
   }
 `;
+
 const Thumbnail = styled.img`
   top: 0;
   right: 0;

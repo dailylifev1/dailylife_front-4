@@ -1,12 +1,13 @@
-import { validate } from 'common/utils';
-import SubmitButton from 'components/buttons/SubmitButton';
-import AvatarIcon from 'components/Icons/AvatarIcon';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import useForm from '../../hooks/useForm';
 import './signUp.scss';
 import SignUpInput from './SignUpInput';
+
+import { validate } from 'common/utils';
+import SubmitButton from 'components/buttons/SubmitButton';
+import AvatarIcon from 'components/Icons/AvatarIcon';
 
 export interface PayloadType {
   username: string;
@@ -27,17 +28,14 @@ function SignUp() {
 
   const [inputValues, setInputValues] = useState(signUpData);
   const activator = () => {
-    const firstErrorMsg = validate(inputValues.username, 'username')[
-      'username'
-    ];
-    const secondErrorMsg = validate(inputValues.email, 'email')['email'];
-    const thirdErrorMsg = validate(inputValues.userId, 'userId')['userId'];
-    const fourthErrorMsg = validate(inputValues.password, 'password')[
-      'password'
-    ];
-    const fifthErrorMsg = validate(inputValues.passwordConfirm, 'password')[
-      'password'
-    ];
+    const firstErrorMsg = validate(inputValues.username, 'username').username;
+    const secondErrorMsg = validate(inputValues.email, 'email').email;
+    const thirdErrorMsg = validate(inputValues.userId, 'userId').userId;
+    const fourthErrorMsg = validate(inputValues.password, 'password').password;
+    const fifthErrorMsg = validate(
+      inputValues.passwordConfirm,
+      'password',
+    ).password;
 
     if (
       firstErrorMsg ||
@@ -47,7 +45,7 @@ function SignUp() {
       fifthErrorMsg
     )
       return false;
-    else return true;
+    return true;
   };
   const signUpInputData = [
     {
@@ -96,7 +94,7 @@ function SignUp() {
       placeholder: '비밀번호 확인',
     },
   ];
-  const { handleChange, handleSubmit } = useForm(signUpData);
+  const { handleSubmit } = useForm(signUpData);
   const [imageName, setImageName] = useState<string[]>([]);
   const [file, setFile] = useState('');
   const [fileImage, setFileImage] = useState<string>('');

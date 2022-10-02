@@ -8,16 +8,13 @@ module.exports = {
     'plugin:react/recommended',
     'standard-with-typescript',
     'airbnb',
-    'airbnb-typescript',
     'prettier',
   ],
   overrides: [],
-
   parserOptions: {
+    project: ['./tsconfig.json'],
     ecmaVersion: 'latest',
-    project: './tsconfig.json',
     sourceType: 'module',
-    tsconfigRootDir: __dirname,
   },
   settings: {
     'import/resolver': {
@@ -30,17 +27,31 @@ module.exports = {
           'plugin: prettier/recommended',
         ],
         paths: ['src'],
-        moduleDirectory: ['src', 'node_modules'],
       },
     },
   },
   plugins: ['react'],
   rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'react/prop-types': 'off',
-
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-alert': 'off',
+    'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': 0,
     indent: 0,

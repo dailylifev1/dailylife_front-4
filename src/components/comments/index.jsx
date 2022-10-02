@@ -13,7 +13,7 @@ function Comments({ modalOpacity }) {
 
   useEffect(() => {
     if (modalOpacity) fetchComments(currentPostData.boardNum);
-  }, [modalOpacity]);
+  }, [modalOpacity, currentPostData.boardNum, fetchComments]);
 
   return (
     <div className="comments-wrapper">

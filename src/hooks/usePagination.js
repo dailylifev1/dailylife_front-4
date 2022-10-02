@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
+
 import postApi from 'apis/postApi';
 import { postActions } from 'reducers/post';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { useEffect, useState } from 'react';
 
 function usePagination({ boardCountPerPage, pageRangeCount }) {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ function usePagination({ boardCountPerPage, pageRangeCount }) {
     if (store.searchResult.result) {
       setPostCount(store.post.myValues.length);
     } else fetchTotalPostCount();
-  }, [store.searchResult.result]);
+  }, [store.searchResult.result, store.post.myValues.length]);
 
   const handleChange = (selectedPage) => {
     const fetchPages = async () => {

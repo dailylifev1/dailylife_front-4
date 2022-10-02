@@ -1,10 +1,10 @@
-import ProfileModifyForm from './profileModifyForm';
 import './accountManage.scss';
-import AccountModifyForm from './AccountModifyForm';
-import { useLocation } from 'react-router-dom';
-import ProfileMenu from './profileMenu';
 import { useState } from 'react';
-import MyInfoTitle from './MyInfoTitle';
+import { useLocation } from 'react-router-dom';
+
+import AccountModifyForm from './AccountModifyForm';
+import ProfileMenu from './profileMenu';
+import ProfileModifyForm from './profileModifyForm';
 
 export interface TextObj {
   id: number;
@@ -35,7 +35,7 @@ function MyInfoForm() {
   const handlePage = () => {
     if (location.pathname === '/profileModify')
       return <ProfileModifyForm textArr={textArr} />;
-    else if (location.pathname === '/findAccount')
+    if (location.pathname === '/findAccount')
       return <AccountModifyForm textArr={textArr} />;
   };
   return (

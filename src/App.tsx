@@ -1,20 +1,18 @@
 import './index.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Login from './pages/Login/index';
 import Navbar from './components/navbar';
-import SearchForm from 'components/navbar/searching/searchForm/SearchForm';
+import Login from './pages/Login/index';
+
 import Main from 'components/main/Main';
 import MyInfo from 'components/myInfo/MyInfo';
 import MyInfoForm from 'components/myInfo/myInfoForm';
+import SearchForm from 'components/navbar/searching/searchForm/SearchForm';
 import SignUp from 'pages/SignUp';
+
 function App() {
   return (
     <BrowserRouter>
-      <meta
-        http-equiv="Content-Security-Policy"
-        content="upgrade-insecure-requests"
-      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />

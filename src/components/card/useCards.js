@@ -1,5 +1,6 @@
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 import { postActions } from '../../reducers/post';
 
 import postApi from 'apis/postApi';
@@ -16,7 +17,7 @@ function useCards() {
       dispatch(postActions.updateItems(cardsData));
     }
     fetchCards();
-  }, [cardData.isLogoClicked]);
+  }, [cardData.isLogoClicked, dispatch]);
   return {
     cardData,
     modalOpacity,

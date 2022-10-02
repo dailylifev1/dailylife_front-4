@@ -1,9 +1,10 @@
-import { useAppSelector } from 'store/hooks';
 import styled from 'styled-components';
 
 import PostModal from '../postModal/index';
 import CardItem from './CardItem';
 import useCards from './useCards';
+
+import { useAppSelector } from 'store/hooks';
 
 function Cards() {
   const { modalOpacity, setModalOpacity } = useCards();
