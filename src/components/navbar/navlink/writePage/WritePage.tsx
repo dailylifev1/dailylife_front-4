@@ -5,7 +5,6 @@ import { getAccessToken } from 'common/utils';
 import CloseButtonIcon from 'components/Icons/CloseButtonIcon';
 import './WritePage.scss';
 
-
 function WritePage(props) {
   const { changeOpenPostModal } = props;
   const [title, setTitle] = useState('');
@@ -55,14 +54,13 @@ function WritePage(props) {
         method="post"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <section className="newPost-modal"
-          onClick={
-            () => closeModal()
-          }
-        >
-          <section className="newPost-boarding" onClick={(e) => {
-            e.stopPropagation();
-          }}>
+        <section className="newPost-modal" onClick={() => closeModal()}>
+          <section
+            className="newPost-boarding"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <div className="newPost-title">게시글 작성</div>
             <section className="newPost-body">
               <div className="newPost-body-pic">
@@ -82,7 +80,9 @@ function WritePage(props) {
                         accept="image/*"
                         onChange={(e) => {
                           if (e.target.files !== null) {
-                            setFileImage(URL.createObjectURL(e.target.files[0]));
+                            setFileImage(
+                              URL.createObjectURL(e.target.files[0]),
+                            );
                             for (let i = 0; i < e.target.files.length; i += 1)
                               setFile(`${file} ${e.target.files[i].name}`);
                             setImageName([...imageName, ...e.target.files]);

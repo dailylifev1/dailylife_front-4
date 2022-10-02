@@ -58,6 +58,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': 0,
+    'no-console': 'off',
     indent: 0,
     'import/order': [
       'error',

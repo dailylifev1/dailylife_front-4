@@ -99,7 +99,8 @@ const GradientBar = styled.div<{ img: string }>`
   bottom: 0;
   opacity: 0.6;
   background: ${(props) =>
-    props.img !== '' ? `linear-gradient(
+    props.img !== ''
+      ? `linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.7) 91.15%

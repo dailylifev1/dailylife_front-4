@@ -2,11 +2,9 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 import { getAccessToken } from 'common/utils';
-import { myInfoActions } from 'reducers/myInfo';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 
 function useSetToken() {
-  const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.myInfo);
   useEffect(() => {
     if (getAccessToken() !== '') {
@@ -22,7 +20,6 @@ function useSetToken() {
             },
           )
           .then((res) => {
-            // dispatch(myInfoActions.updateUserInfo(res.data.data));
             console.log(res.data);
           })
           .catch((err) => console.log(err));

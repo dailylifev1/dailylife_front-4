@@ -28,14 +28,16 @@ function SignUp() {
 
   const [inputValues, setInputValues] = useState(signUpData);
   const activator = () => {
-    const firstErrorMsg = validate(inputValues.username, 'username').username !== undefined;
-    const secondErrorMsg = validate(inputValues.email, 'email').email !== undefined;
-    const thirdErrorMsg = validate(inputValues.userId, 'userId').userId !== undefined;
-    const fourthErrorMsg = validate(inputValues.password, 'password').password !== undefined;
-    const fifthErrorMsg = validate(
-      inputValues.passwordConfirm,
-      'password',
-    ).password !== undefined;
+    const firstErrorMsg =
+      validate(inputValues.username, 'username').username !== undefined;
+    const secondErrorMsg =
+      validate(inputValues.email, 'email').email !== undefined;
+    const thirdErrorMsg =
+      validate(inputValues.userId, 'userId').userId !== undefined;
+    const fourthErrorMsg =
+      validate(inputValues.password, 'password').password !== undefined;
+    const fifthErrorMsg =
+      validate(inputValues.passwordConfirm, 'password').password !== undefined;
 
     if (
       firstErrorMsg ||
@@ -135,8 +137,8 @@ function SignUp() {
                   reqId={item.reqId}
                   limit={item.limit}
                   placeholder={item.placeholder}
-                  width='100%'
-                  height='auto'
+                  width="100%"
+                  height="auto"
                 />
               </div>
             ))}
@@ -145,7 +147,7 @@ function SignUp() {
               height="50px"
               fontSize="17px"
               isActive={activator()}
-              width='100px'
+              width="100px"
             />
           </div>
           {/* <button type="submit" className="register-form-submit-btn">
