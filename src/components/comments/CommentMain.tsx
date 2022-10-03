@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import AvatarIcon from 'components/Icons/AvatarIcon';
@@ -10,9 +9,6 @@ interface Props {
 }
 
 function CommentMain({ item }: Props) {
-  useEffect(() => {
-    console.log(item);
-  }, [item]);
   return (
     <CommentMainWrapper>
       <AvatarIcon image='' />
