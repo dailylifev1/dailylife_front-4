@@ -12,7 +12,7 @@ import SignUp from 'pages/SignUp';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
