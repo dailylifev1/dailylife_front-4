@@ -1,0 +1,21 @@
+name: App Deploy To Github Pages
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Generate Environment Variables File for Production
+        run: echo "REACT_APP_HOST=$REACT_APP_HOST">>.env.production
+      
+        env:
+          REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
+        
+      - name: Deploy react app to github pages
+        uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
