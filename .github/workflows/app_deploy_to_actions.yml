@@ -11,11 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Generate Environment Variables File for Production
+      - name: Generate Environment Variables File for Production1
         run: echo "REACT_APP_HOST=$REACT_APP_HOST">>.env.production
-      
+        
         env:
           REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
+          
+      - name: Generate Environment Variables File for Production2
+        run: echo "PUBLIC_URL=$PUBLIC_URL">>.env.production
         
+        env:
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }} 
+          
       - name: Deploy react app to github pages
         uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
