@@ -3,31 +3,27 @@ import { useEffect } from 'react';
 import CommentCreate from './CommentCreate';
 import CommentSection from './CommentSection';
 
-import { OpacityType } from 'components/card/useCards';
 import ModalSocial from 'components/postModal/ModalSocial';
 import useComments from 'hooks/useComments';
 import { updateReplyList } from 'reducers/comment';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
-interface Props {
-  modalOpacity: OpacityType;
-}
-
-function Comments({ modalOpacity }: Props) {
+function Comments({modalOpacity}) {
   const currentPostData = useAppSelector((state) => state.selectedPostData);
   const { fetchComments } = useComments();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (modalOpacity === 1) {
-      fetchComments(currentPostData.boardNum)
-        .then((updatedTimeList) => {
-          dispatch(updateReplyList(updatedTimeList));
-        }).catch((err) => {
-          console.log(err);
-        })
-    };
-  }, [modalOpacity, currentPostData.boardNum, fetchComments]);
+    // const commentInterval:ReturnType<typeof setInterval> = setInterval(() => {
+        fetchComments(currentPostData.boardNum)
+          .then((updatedTimeList) => {
+            dispatch(updateReplyList(updatedTimeList));
+          }).catch((err) => err)
+      // }, 1000);
+    // return () => {
+    //   clearInterval(commentInterval);
+    // }
+  }, [modalOpacity, currentPostData.boardNum]);
 
   return (
     <div className="comments-wrapper">

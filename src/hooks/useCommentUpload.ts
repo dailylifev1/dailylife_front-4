@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { KeyboardEvent } from 'react';
 
 import { getAccessToken, getCommentDate } from 'common/utils';
 import { updateReplyList } from 'reducers/comment';
@@ -10,7 +11,8 @@ function useCommentUpload(selectedPostData: ISelectedPostData) {
   const { replyList } = useAppSelector((state) => state.comment);
   // const replyInput = useRef();
 
-  function addCommentProcess(e) {
+  function addCommentProcess(e: KeyboardEvent<HTMLInputElement>) {
+    const element = e.target as HTMLInputElement;
     if (getAccessToken() !== '') {
       if (sessionStorage.getItem('replyInfo') === null) {
         // 댓글 업로드
@@ -20,7 +22,7 @@ function useCommentUpload(selectedPostData: ISelectedPostData) {
               `${process.env.REACT_APP_HOST}/api/reply/insert`,
               {
                 boardNum: selectedPostData.boardNum,
-                replyContext: e.target.value,
+                replyContext: element.value,
               },
               {
                 headers: {
@@ -29,10 +31,14 @@ function useCommentUpload(selectedPostData: ISelectedPostData) {
               },
             )
             .then((res) => {
-              e.target.value = '';
-              console.log(getCommentDate(res.data.replyTime));
+              element.value = '';
               res.data.replyTime = getCommentDate(res.data.replyTime);
-              dispatch(updateReplyList([...replyList, res.data]));
+              const tempList = [...replyList, res.data];
+              tempList.sort((a, b) => {
+                if (a.replyNum > b.replyNum) return 1;
+                return -1;
+              });
+              dispatch(updateReplyList(tempList));
             })
             .catch((err) => console.log(err));
         }
@@ -83,7 +89,6 @@ function useCommentUpload(selectedPostData: ISelectedPostData) {
       //   .catch((err) => console.log(err));
       // }
     } else {
-      e.target.value = '';
       alert('로그인 후 이용해주세요.');
     }
   }

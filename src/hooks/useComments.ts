@@ -15,6 +15,10 @@ const useComments = () => {
       ...item,
       replyTime: getCommentDate(item.replyTime),
     }));
+    updatedTimeList.sort((a: Icomment, b: Icomment) => {
+      if (a.replyNum > b.replyNum) return 1;
+      return -1;
+    })
     return updatedTimeList;
   };
 

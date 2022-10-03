@@ -2,22 +2,22 @@ import { KeyboardEvent, useRef } from 'react';
 import styled from 'styled-components/macro';
 
 import AvatarIcon from 'components/Icons/AvatarIcon';
-import useComments from 'hooks/useComments';
+// import useComments from 'hooks/useComments';
 import useCommentUpload from 'hooks/useCommentUpload';
-import { updateReplyList } from 'reducers/comment';
+// import { updateReplyList } from 'reducers/comment';
 import { ISelectedPostData } from 'reducers/selectedPostData';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+// import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 interface Props {
   currentPostData: ISelectedPostData;
 }
 
 function CommentCreate({ currentPostData }: Props) {
-  const dispatch = useAppDispatch();
-  const selectedPostData = useAppSelector((state) => state.selectedPostData);
+  // const dispatch = useAppDispatch();
+  // const selectedPostData = useAppSelector((state) => state.selectedPostData);
   const replyInput = useRef<HTMLInputElement>(null);
   const { addCommentProcess } = useCommentUpload(currentPostData);
-  const { fetchComments } = useComments();
+  // const { fetchComments } = useComments();
 
   /** 댓글, 대댓글 작성 api 통신 함수 */
 
@@ -49,9 +49,9 @@ function CommentCreate({ currentPostData }: Props) {
         onKeyUp={(event: KeyboardEvent<HTMLInputElement>) => {
           if (event.code === 'Enter' && replyInput.current?.value !== '') {
             addCommentProcess(event);
-            fetchComments(selectedPostData.boardNum).then((updatedTimeList) => {
-              dispatch(updateReplyList(updatedTimeList));
-            }).catch((err) => err);
+            // fetchComments(selectedPostData.boardNum).then((updatedTimeList) => {
+            //   dispatch(updateReplyList(updatedTimeList));
+            // }).catch((err) => err);
           }
         }}
         onChange={(e) => {

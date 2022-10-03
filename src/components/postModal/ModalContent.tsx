@@ -19,7 +19,7 @@ function ModalContent(props) {
         <div className="text-in-modal">{contentGenerator(content)}</div>
         {/* <div className="text-in-modal">{currentPostData.content}</div> */}
       </div>
-      <Comments modalOpacity={modalOpacity} />
+      <Comments modalOpacity={modalOpacity}/>
     </div>
   );
 }
