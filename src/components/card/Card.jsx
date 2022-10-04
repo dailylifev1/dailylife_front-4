@@ -9,12 +9,13 @@ import { useAppSelector } from 'store/hooks';
 function Cards() {
   const { modalOpacity, setModalOpacity } = useCards();
   const cardData = useAppSelector((state) => state.post);
+
   return (
     <CardsWrapper>
       <CardsContainer>
         <CardsStyled>
           <CardsItems>
-            {cardData?.myValues.map((data) => (
+            {cardData.myValues.map((data) => (
               <CardItem
                 key={data.boardNum}
                 boardNum={data.boardNum}

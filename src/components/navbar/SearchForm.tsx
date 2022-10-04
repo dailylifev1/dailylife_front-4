@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Searching.scss';
+import './Searching.scss';
 
 import { postActions } from 'reducers/post';
 import { updateSearchedKeyword } from 'reducers/searchResult';
 import { useAppDispatch } from 'store/hooks';
 
-function SearchForm() {
+function Searching() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function SearchForm() {
               if (process.env.REACT_APP_HOST !== undefined) {
                 axios
                   .get(
-                    `${process.env.REACT_APP_HOST}/api/board/getBoardNotLogin?keyword=${element.value}`,
+                    `${process.env.REACT_APP_HOST}api/board/getBoardNotLogin?keyword=${element.value}`,
                     {},
                   )
                   .then((res) => {
@@ -41,7 +41,6 @@ function SearchForm() {
                   .catch((res) => {
                     console.log(res);
                   });
-
               }
             }
           }}
@@ -52,4 +51,4 @@ function SearchForm() {
   );
 }
 
-export default SearchForm;
+export default Searching;

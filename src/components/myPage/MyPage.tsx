@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyPost from './MyPost';
 import UserInfo from './UserInfo';
 
-export default function MyInfo() {
+export default function MyPage() {
   return (
     <MyInfoWrapper>
       <UserInfo />

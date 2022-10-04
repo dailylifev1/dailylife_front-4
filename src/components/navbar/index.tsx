@@ -1,11 +1,11 @@
 import './index.scss';
-import NavLinks from './navlink/Navlink';
-import NavLogo from './navLogo/NavLogo';
-import Searching from './searching';
+import NavLinks from './Navlink';
+import NavLogo from './NavLogo';
+import Searching from './SearchForm';
 
 function Navbar() {
   return (
-    <div className='nav-container'>
+    <div className="nav-container">
       <div className="nav">
         <NavLogo />
         <Searching />

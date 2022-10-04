@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 // import useSetToken from '../../hooks/useSetToken';
 
 function UserInfo() {
   // const userData = useSetToken();
+  const navigate = useNavigate();
   return (
     <UserInfoWrapper>
       <UserImage>
@@ -15,7 +17,9 @@ function UserInfo() {
         <Followers>팔로워 0명</Followers>
         <Followings>팔로잉 0명</Followings>
       </FollowInfo>
-      <ModifyProfile>프로필 수정</ModifyProfile>
+      <ModifyProfile onClick={() => navigate('/profileModify')}>
+        프로필 수정
+      </ModifyProfile>
     </UserInfoWrapper>
   );
 }

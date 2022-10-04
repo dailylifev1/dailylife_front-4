@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import WritePageButton from 'components/Icons/WritePageButton';
-import NewUserPost from 'components/navbar/navlink/writePage/WritePage';
+import NewUserPost from 'components/navbar/WritePage';
 
 function PostRender() {
   const [openPostModal, setOpenPostModal] = useState(false);

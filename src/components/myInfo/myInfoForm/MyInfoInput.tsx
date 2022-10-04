@@ -36,6 +36,7 @@ export default function MyInfoInput({
     isValid: true,
     error: '',
   });
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setState(e.target.value);
     const validationResult = validate(e.target.value, formType);
@@ -75,6 +76,7 @@ const StyledInput = styled.input<Props>`
   line-height: 19px;
   letter-spacing: 0.02em;
 `;
+
 const Description = styled.p<{ isValid: boolean }>`
   position: absolute;
   margin-top: 6px;
