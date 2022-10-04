@@ -100,12 +100,12 @@ function WritePage(props) {
                     />
                   )}
                 </div>
-                {fileImage !== '' && (
+                {fileImage === '' && (
                   <p className="newPost-body-pic-explain">
                     아래 버튼을 클릭하여 이미지를 추가해주세요.
                   </p>
                 )}
-                {fileImage !== '' && (
+                {fileImage === '' && (
                   <img
                     className="newPost-body-pic-cloudPic"
                     src="/assets/cloud-upload.png"

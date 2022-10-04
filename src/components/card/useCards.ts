@@ -16,8 +16,6 @@ function useCards() {
     async function fetchCards() {
       const { data: cardsData } = await postApi.getItemsWhenLoggedIn();
       dispatch(postActions.updateItems(cardsData));
-
-      console.log(cardsData);
     }
     fetchCards()
       .then((res) => res)

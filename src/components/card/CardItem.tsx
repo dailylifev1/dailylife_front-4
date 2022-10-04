@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import useCardItem from './useCardItem';
 import { type OpacityType } from './useCards';
@@ -37,20 +37,28 @@ function CardItem({
     <CardWrapper onClick={handleClick}>
       <ImgWrapper>
         {src !== '' ? <Thumbnail alt="img" src={src} /> : ''}
-        <UnderInfo img={src}>{content}</UnderInfo>
-        <Text img={src}>{title}</Text>
+        <InfoWrapper>
+          <UnderInfo img={src}>{content}</UnderInfo>
+          <Text img={src}>{title}</Text>
+          <LikeButton
+            onClick={clickHeartEvent}
+            src={like ? Fullheart : Emptyheart}
+            alt="like"
+          />
+        </InfoWrapper>
         <GradientBar img={src} />
       </ImgWrapper>
-      <CardInfo>
-        <LikeButton
-          onClick={clickHeartEvent}
-          src={like ? Fullheart : Emptyheart}
-          alt="like"
-        />
-      </CardInfo>
+      <CardInfo />
     </CardWrapper>
   );
 }
+const InfoWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4vw;
+`;
+
 const CardWrapper = styled.li`
   position: relative;
   border-radius: 10px;
@@ -148,10 +156,11 @@ const UnderInfo = styled.p<{ img: string }>`
   bottom: 0.5vw;
 `;
 const LikeButton = styled.img`
+  z-index: 1;
   position: absolute;
   width: 1.4vw;
   height: 1.4vw;
-  bottom: 2.8vw;
+  top: 0.2vw;
   right: 0.75vw;
 `;
 export default CardItem;
