@@ -1,4 +1,4 @@
-import { methodFormat } from '../common/utils';
+import { getAccessToken, methodFormat } from '../common/utils';
 import client from './client';
 
 const PATH = 'api/users';
@@ -24,6 +24,14 @@ const userApi = {
     const response = await client.post(`/${PATH}/login`, payload);
     return response;
   }),
+  verifyUser: methodFormat(async () => {
+    const response = await client.post(`${PATH}/getUserNum`, {}, {
+      headers: {
+        'X-ACCESS-TOKEN': getAccessToken()
+      }
+    });
+    return response;
+  })
 };
 
 export default userApi;
