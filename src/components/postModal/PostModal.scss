@@ -1,32 +1,3 @@
-.modal-image {
-  width: 50%;
-  max-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 10px;
-  background-position: center;
-  background-size: contain, cover;
-  background-repeat: no-repeat;
-}
-
-.modal-close-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-}
-
-.modal-content-container {
-  width: 50%;
-  margin-left: 20px;
-}
-
-.modal-content-container > .comments-wrapper {
-  position: relative;
-}
-
 .modal-content-container > .comments-wrapper > .comment-create {
   position: absolute;
   bottom: 0;
@@ -39,31 +10,6 @@
   display: flex;
   justify-content: space-around;
 }
-
-.modal-post-content {
-  text-align: start;
-  margin-top: 12px;
-}
-
-.modal-post-content > .title-in-modal {
-  text-align: start;
-  font-size: xx-large;
-}
-
-.modal-post-content > .text-in-modal {
-  height: 17vh;
-  max-height: 121px;
-  overflow-y: auto;
-  margin-top: 1.2vh;
-  margin-bottom: 0.5vh;
-}
-
-.modal-post-content hr {
-  background-color: #eaeaea;
-  height: 1px;
-  border: 0;
-}
-
 .social-icons-container {
   display: flex;
   align-items: center;
@@ -75,17 +21,6 @@
 
 .social-counter-container > .comments-count {
   margin-left: 10px;
-}
-
-.comments-wrapper {
-  position: relative;
-  height: 350px;
-}
-
-.comment-section {
-  margin-top: 1vh;
-  height: 260px;
-  overflow-y: auto;
 }
 
 .comment-create {

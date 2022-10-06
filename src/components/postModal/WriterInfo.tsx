@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 import postApi from 'apis/postApi';
-import ModalCloseButton from 'components/buttons/ModalCloseButton';
+import ModalCloseButton, { ModalClose } from 'components/buttons/ModalCloseButton';
 import AvatarIcon from 'components/Icons/AvatarIcon';
 import KebabMenu from 'components/Icons/KebabMenu';
 import { updateModalStatus } from 'reducers/kebab.postModal';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import devices from 'styles/device';
 
 function WriterInfo({ setModalOpacity }) {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ function WriterInfo({ setModalOpacity }) {
         <Username>작성자닉네임</Username>
         <Follow>팔로우</Follow>
       </WriterInfoWrapper>
-      <div className="modal-close-container">
+      <CloseContainer>
         <KebabMenuContainer
           onClick={() => {
             toggleMenu();
@@ -57,12 +58,43 @@ function WriterInfo({ setModalOpacity }) {
           </KebabListContainer>
         </KebabMenuContainer>
         <ModalCloseButton setModalOpacity={setModalOpacity} />
-      </div>
+      </CloseContainer>
     </div>
   );
 }
 
 export default WriterInfo;
+
+const CloseContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  @media ${devices.mobileS} {
+    & > ${ModalClose} {
+      position: absolute;
+      display: none;
+    }
+  }
+
+  @media ${devices.laptop} {
+    & > ${ModalClose} {
+      display: block;
+      right: -3vh;
+      top: -10vh;
+    }
+    
+    & > ${ModalClose} > svg > path {
+      stroke: #F4F4F4;
+    }
+  }
+  @media ${devices.laptopL} {
+    & > ${ModalClose} {
+      right: -7vh;
+    }
+  }
+`
 
 const KebabMenuContainer = styled.div`
   position: relative;
@@ -79,6 +111,7 @@ const KebabListContainer = styled.div`
   background: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
+  z-index: 1;
 `;
 
 const WriterInfoWrapper = styled.div`
@@ -133,5 +166,21 @@ const Follow = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 23px;
+
+  background-color: #F0F0F0;
+
+  @media ${devices.mobileS} {
+    font-size: small;
+  }
+  @media ${devices.mobileM} {
+    font-size: inherit;
+  }
 `;
-const Username = styled.div``;
+const Username = styled.div`
+  @media ${devices.mobileS} {
+    font-size: small;
+  }
+  @media ${devices.mobileM} {
+    font-size: inherit;
+  }
+`;

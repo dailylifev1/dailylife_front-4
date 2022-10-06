@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import styled from 'styled-components';
 
 import CommentCreate from './CommentCreate';
 import CommentSection from './CommentSection';
@@ -7,6 +8,7 @@ import ModalSocial from 'components/postModal/ModalSocial';
 import useComments from 'hooks/useComments';
 import { updateReplyList } from 'reducers/comment';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import devices from 'styles/device';
 
 function Comments({modalOpacity}) {
   const currentPostData = useAppSelector((state) => state.selectedPostData);
@@ -26,7 +28,7 @@ function Comments({modalOpacity}) {
   }, [modalOpacity, currentPostData.boardNum]);
 
   return (
-    <div className="comments-wrapper">
+    <Wrapper>
       {/* 좋아요 댓글 갯수 출력하는 코드 */}
       <ModalSocial />
       <hr />
@@ -36,8 +38,15 @@ function Comments({modalOpacity}) {
       <CommentCreate
         currentPostData={currentPostData}
       />
-    </div>
+    </Wrapper>
   );
 }
 
 export default Comments;
+const Wrapper = styled.div.attrs({className: 'comments-wrapper'})`
+  @media ${devices.laptop} {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+`

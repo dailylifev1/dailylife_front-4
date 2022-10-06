@@ -27,14 +27,9 @@ function ModalCloseButton({ setModalOpacity }: Props) {
 
 export default ModalCloseButton;
 
-const ModalClose = styled.div`
-  position: absolute;
-  top: -3.5vh;
-  right: -7vh;
-  margin-left: auto;
+export const ModalClose = styled.div`
   width: 18px;
   aspect-ratio: 1;
-  color: #aaa;
   text-decoration: none;
 
   & svg {
