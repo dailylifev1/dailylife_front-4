@@ -3,7 +3,7 @@ interface Result {
   data?: any;
   message?: string;
 }
-
+ //
 const methodFormat = (callbackfunc: Function) => {
   const method = async (...args: any[]) => {
     let result: Result = {
