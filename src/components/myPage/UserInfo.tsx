@@ -1,18 +1,38 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// import useSetToken from '../../hooks/useSetToken';
+import userApi from 'apis/userApi';
+import { myInfoActions } from 'reducers/myInfo';
+import { useAppSelector } from 'store/hooks';
 
 function UserInfo() {
-  // const userData = useSetToken();
+  const userData = useAppSelector((state) => state.myInfo);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [usersData, setUsersData] = useState<any>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data: userInfo } = await userApi.getUserInfo(userData.userNum);
+      console.log(userData.userNum);
+      console.log(userInfo.data.data);
+      dispatch(myInfoActions.updateUserNum(userInfo.data.data));
+    }
+    fetchData()
+      .then((res) => res)
+      .catch((err) => err);
+  }, [userData.userNum]);
   return (
     <UserInfoWrapper>
       <UserImage>
         <img src="" alt="userImage" />
       </UserImage>
-      <UserName>dailyLife1</UserName>
-      <UserId>@dailyLife1</UserId>
+
+      <UserName>{userData.userName}</UserName>
+      <UserId>{userData.userId}</UserId>
+
       <FollowInfo>
         <Followers>팔로워 0명</Followers>
         <Followings>팔로잉 0명</Followings>

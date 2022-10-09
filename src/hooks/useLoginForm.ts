@@ -40,7 +40,8 @@ const useLoginForm = (initialValues: InitialValues) => {
           const response = result.data;
           localStorage.setItem('accessToken', response.data.data.accessToken);
           dispatch(SET_TOKEN(response.data.data.accessToken));
-          dispatch(myInfoActions.updateUserNum(response.data.data.userNum));
+          dispatch(myInfoActions.updateUserNum(response.data.data));
+          console.log(response.data.data);
           navigate('/');
         } else {
           console.log(result.message);
