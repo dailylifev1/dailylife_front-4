@@ -39,7 +39,7 @@ const useLoginForm = (initialValues: InitialValues) => {
         if (result.ok) {
           const response = result.data;
           localStorage.setItem('accessToken', response.data.data.accessToken);
-          // dispatch(SET_TOKEN(response.data.data.accessToken));
+          dispatch(SET_TOKEN(response.data.data.accessToken));
           dispatch(myInfoActions.updateUserNum(response.data.data.userNum));
           navigate('/');
         } else {
