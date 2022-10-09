@@ -19,7 +19,9 @@ function NavLogo() {
         type="button"
       >
         <Link to="/">
+
           <img src={`${getPublicURL()}/assets/logo.png`} alt="mainLogo" />
+
         </Link>
       </button>
     </div>

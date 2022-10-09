@@ -6,7 +6,11 @@ import useCards from './useCards';
 
 import { useAppSelector } from 'store/hooks';
 
-function Cards() {
+interface cardProps {
+  type?: string;
+}
+
+function Cards({ type = 'default' }: cardProps) {
   const { modalOpacity, setModalOpacity } = useCards();
   const cardData = useAppSelector((state) => state.post);
 
@@ -24,6 +28,7 @@ function Cards() {
                 content={data.content}
                 heartState={data.heart}
                 setModalOpacity={setModalOpacity}
+                type={type}
               />
             ))}
             <PostModal

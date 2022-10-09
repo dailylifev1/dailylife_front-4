@@ -10,6 +10,7 @@ interface Props {
   title: string;
   content: string;
   heartState: boolean;
+  type?: string;
   setModalOpacity: React.Dispatch<React.SetStateAction<OpacityType>>;
 }
 
@@ -20,6 +21,7 @@ function CardItem({
   content,
   heartState,
   setModalOpacity,
+  type = 'default',
 }: Props) {
   const { handleClick, clickHeartEvent, like } = useCardItem({
     heartState,
@@ -34,7 +36,7 @@ function CardItem({
   const Emptyheart = '/assets/heart.png';
 
   return (
-    <CardWrapper onClick={handleClick}>
+    <CardWrapper type={type} onClick={handleClick}>
       <ImgWrapper>
         {src !== '' ? <Thumbnail alt="img" src={src} /> : ''}
         <InfoWrapper>
@@ -59,22 +61,24 @@ const InfoWrapper = styled.div`
   height: 4vw;
 `;
 
-const CardWrapper = styled.li`
+const CardWrapper = styled.li<{ type: string }>`
   position: relative;
   border-radius: 10px;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
   object-fit: cover;
   aspect-ratio: 1;
   background-color: rgb(247, 247, 247);
   box-shadow: rgba(79, 79, 117, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
   &:nth-of-type(9n + 2),
   &:nth-of-type(9n + 7) {
-    grid-column: span 2;
+    ${(props) =>
+      props.type !== 'myPost'
+        ? `grid-column: span 2;
     grid-row: span 2;
-    height: 100%;
+    height: 100%;`
+        : ''}
   }
 `;
 
