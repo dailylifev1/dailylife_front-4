@@ -1,8 +1,23 @@
-import { getAccessToken, methodFormat } from '../common/utils';
+
+import { methodFormat, getAccessToken } from '../common/utils';
+
 import client from './client';
 
 const PATH = 'api/users';
 const userApi = {
+  getUserInfo: methodFormat(async (userNum: string) => {
+    const accessToken = getAccessToken();
+
+    const response =
+      process.env.REACT_APP_HOST !== undefined
+        ? await client.post(`/api/users/details/${userNum}`, null, {
+            headers: {
+              'X-ACCESS-TOKEN': accessToken,
+            },
+          })
+        : '';
+    return response;
+  }),
   postUserInfoForSignUp: methodFormat(async ({ userInfo }) => {
     const options = {
       params: {
