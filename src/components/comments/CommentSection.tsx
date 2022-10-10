@@ -10,10 +10,6 @@ function CommentSection() {
   const { replyList } = useAppSelector((state) => state.comment);
   const [replyHover, setReplyHover] = useState(-1);
 
-  useEffect(() => {
-    console.log(replyList);
-  })
-
   return (
     <Container commentList={replyList}>
       {replyList.map((
